@@ -30,7 +30,7 @@ class ProfileController extends Controller
     
     public function create( Request $request )
     {
-        if( empty( $this->user->admin )  ) 
+        if( empty( $this->user )  ) 
             return redirect('register')->with('status', 'You have to register first!');
         $user_id = $request->user()->id;
         $profile = Profile::where('user_id', $user_id )->first();
@@ -40,7 +40,7 @@ class ProfileController extends Controller
     
     public function add( Request $request )
     {
-        if( empty( $this->user->admin )  ) 
+        if( empty( $this->user )  ) 
             return redirect('register')->with('status', 'You have to register first!');
         
         $user_id = $request->user()->id;

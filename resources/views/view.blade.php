@@ -13,6 +13,7 @@
                         <tr><th>Created</th><td>{{ $profile->created_at }}</td></tr>
                         <tr><th>User joined</th><td>{{ $profile->user->created_at }}</td></tr>
                         <tr><th>Username</th><td>{{ $profile->username }}</td></tr>
+                        <tr><th> Real name</th><td>{{ $profile->user->name }}</td></tr>
                         <tr><th>Description</th><td>{{ $profile->description }}</td></tr>
                 </table>
                     <div><a href="{{ url('/admin/') }}">Return to profile list</a></div>

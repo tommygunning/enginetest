@@ -1,11 +1,15 @@
 @extends('layouts.app')
-
+<?php
+        $user_id = Auth::user()->id;
+        $is_admin = Auth::user()->admin;
+        $profile = App\Profile::where('user_id', $user_id )->first();
+?>
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+                <div class="panel-heading"><?php if( $is_admin ) echo "Admin "; ?>Dashboard</div>
 
                 <div class="panel-body">
                 @if (session('status'))
@@ -13,13 +17,13 @@
         {{ session('status') }}
     </div>
 @endif
-                <?php
-                $user_id = Auth::user()->id;
-                $profile = App\Profile::where('user_id', $user_id )->first();
-                ?>
+               
                     You are logged in!
                     <?php if( empty( $profile->id )): ?>
                     <div>You haven't created a profile yet! <a class="btn btn-link" href="{{ url('/profile/create') }}">Create one now</a></div>
+                    <?php endif; ?>
+                       <?php if( !empty( $is_admin )): ?>
+                    <div>View Profiles:  <a class="btn btn-link" href="{{ url('/admin') }}">here</a></div>
                     <?php endif; ?>
                 </div>
             </div>

@@ -27,7 +27,7 @@ class AdminController extends Controller
      * Returns list of active profiles
      *
      * @param $request A Request object
-     * @return view
+     * @return Response
      */
     public function index( Request $request )
     {
@@ -43,7 +43,7 @@ class AdminController extends Controller
      *  View a profile
      *
      * @param $id The profile identifier
-     * @return view
+     * @return Response
      */
     public function view( $id )
     {

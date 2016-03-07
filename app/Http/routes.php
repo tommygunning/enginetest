@@ -32,6 +32,6 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('/profile/add', 'ProfileController@add' );
     Route::get('/', 'UserController@index');
     Route::get('/home', 'UserController@index');
-    Route::resource('api', 'ApiController');
 });
 
+    Route::resource('api', 'ApiController');
