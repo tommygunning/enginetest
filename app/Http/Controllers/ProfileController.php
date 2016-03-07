@@ -4,6 +4,7 @@
  */
 namespace App\Http\Controllers;
 
+use Auth;
 use App\User;
 use App\Profile;
 use Validator;
@@ -19,7 +20,7 @@ class ProfileController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->user = Auth::user();
     }
     /**
      * Show the profile creation form.
@@ -29,6 +30,8 @@ class ProfileController extends Controller
     
     public function create( Request $request )
     {
+        if( empty( $this->user->admin )  ) 
+            return redirect('register')->with('status', 'You have to register first!');
         $user_id = $request->user()->id;
         $profile = Profile::where('user_id', $user_id )->first();
         if( !empty( $profile ) )  return redirect('home')->with('status', 'Profile already created!');
@@ -37,6 +40,9 @@ class ProfileController extends Controller
     
     public function add( Request $request )
     {
+        if( empty( $this->user->admin )  ) 
+            return redirect('register')->with('status', 'You have to register first!');
+        
         $user_id = $request->user()->id;
         $profile = Profile::where('user_id', $user_id )->first();
         if( !empty( $profile ) )  return redirect('home')->with('status', 'Profile already created!');

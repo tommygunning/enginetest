@@ -1,13 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    <!-- Create Task Form... -->
 
-    <!-- Current Tasks -->
-    @if (count($tasks) > 0)
+    @if (count($profiles) > 0)
         <div class="panel panel-default">
             <div class="panel-heading">
-                Current Tasks
+                Active Profiles
             </div>
 
             <div class="panel-body">
@@ -15,21 +13,28 @@
 
                     <!-- Table Headings -->
                     <thead>
-                        <th>Task</th>
-                        <th>&nbsp;</th>
+                        <th>Username</th>
+                        <th>Created</th>
+                        <th>Email</th>
+                        <th>View</th>
                     </thead>
 
                     <!-- Table Body -->
                     <tbody>
-                        @foreach ($tasks as $task)
+                        @foreach ($profiles as $profile )
                             <tr>
                                 <!-- Task Name -->
                                 <td class="table-text">
-                                    <div>{{ $task->name }}</div>
+                                    <div>{{ $profile->username }}</div>
                                 </td>
-
+                                <td class="table-text">
+                                    <div>{{ $profile->created_at }}</div>
+                                </td>
+                                <td class="table-text">
+                                    <div>{{ $profile->user->email }}</div>
+                                </td>
                                 <td>
-                                    <!-- TODO: Delete Button -->
+                                     <div><a href="{{ url('/admin/view') }}/{{ $profile->id }}">View</a></div>
                                 </td>
                             </tr>
                         @endforeach

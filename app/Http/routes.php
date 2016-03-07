@@ -28,8 +28,10 @@ Route::group(['middleware' => 'web'], function () {
     Route::auth();
     Route::get('/profile/create', 'ProfileController@create' );
     Route::get('/admin', 'AdminController@index');
-     Route::post('/profile/add', 'ProfileController@add' );
-     Route::get('/', 'UserController@index');
+    Route::get('/admin/view/{id}', 'AdminController@view');
+    Route::post('/profile/add', 'ProfileController@add' );
+    Route::get('/', 'UserController@index');
     Route::get('/home', 'UserController@index');
+    Route::resource('api', 'ApiController');
 });
 
