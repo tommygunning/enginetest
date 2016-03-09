@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Profile;
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use Auth;
 
 class UserController extends Controller
 {
@@ -24,6 +26,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $user_id = Auth::user()->id;
+        $profile = Profile::where('user_id', $user_id )->first();
+        return view('home', ['profile'=>$profile] );
     }
 }

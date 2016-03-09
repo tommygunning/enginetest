@@ -1,8 +1,7 @@
 @extends('layouts.app')
 <?php
-        $user_id = Auth::user()->id;
         $is_admin = Auth::user()->admin;
-        $profile = App\Profile::where('user_id', $user_id )->first();
+        
 ?>
 @section('content')
 <div class="container">
