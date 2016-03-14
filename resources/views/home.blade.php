@@ -1,8 +1,4 @@
 @extends('layouts.app')
-<?php
-        $is_admin = Auth::user()->admin;
-        
-?>
 @section('content')
 <div class="container">
     <div class="row">

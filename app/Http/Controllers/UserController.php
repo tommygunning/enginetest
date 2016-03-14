@@ -27,7 +27,8 @@ class UserController extends Controller
     public function index()
     {
         $user_id = Auth::user()->id;
+        $is_admin = Auth::user()->admin;
         $profile = Profile::where('user_id', $user_id )->first();
-        return view('home', ['profile'=>$profile] );
+        return view('home', ['profile'=>$profile, 'is_admin' => $is_admin ] );
     }
 }
